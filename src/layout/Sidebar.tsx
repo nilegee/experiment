@@ -1,12 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { CheckSquare, StickyNote, Calendar as CalendarIcon, FileText } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
 }
 
 const linkClasses = ({ isActive }: { isActive: boolean }) =>
-  `block py-2 px-4 rounded hover:bg-gray-200 ${isActive ? 'bg-gray-200' : ''}`;
+  `flex items-center py-2 px-4 rounded hover:bg-gray-200 ${isActive ? 'bg-gray-200' : ''}`;
+
+const navItems = [
+  { to: '/todo', label: 'Todo', icon: CheckSquare },
+  { to: '/notes', label: 'Notes', icon: StickyNote },
+  { to: '/calendar', label: 'Calendar', icon: CalendarIcon },
+  { to: '/hr-update', label: 'HR Update', icon: FileText },
+];
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
@@ -16,15 +24,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
       } transition duration-200 ease-in-out lg:relative lg:translate-x-0`}
     >
       <nav className="space-y-2">
-        <NavLink to="/todo" className={linkClasses}>
-          Todo
-        </NavLink>
-        <NavLink to="/notes" className={linkClasses}>
-          Notes
-        </NavLink>
-        <NavLink to="/calendar" className={linkClasses}>
-          Calendar
-        </NavLink>
+        {navItems.map(({ to, label, icon: Icon }) => (
+          <NavLink key={to} to={to} className={linkClasses}>
+            <Icon className="w-4 h-4 mr-2" />
+            {label}
+          </NavLink>
+        ))}
       </nav>
     </div>
   );
