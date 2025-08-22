@@ -5,6 +5,7 @@ import Sidebar from './layout/Sidebar';
 import TodoApp from './apps/todo/TodoApp';
 import NotesApp from './apps/notes/NotesApp';
 import CalendarApp from './apps/calendar/CalendarApp';
+import HRUpdateApp from './apps/hr/HRUpdateApp';
 
 const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,6 +22,7 @@ const App: React.FC = () => {
               <Route path="/todo" element={<TodoApp />} />
               <Route path="/notes" element={<NotesApp />} />
               <Route path="/calendar" element={<CalendarApp />} />
+              <Route path="/hr-update" element={<HRUpdateApp />} />
             </Routes>
           </main>
         </div>
